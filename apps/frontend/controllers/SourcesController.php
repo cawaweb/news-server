@@ -58,6 +58,13 @@ class SourcesController extends ControllerBase
         $this->view->addForm = $form;
     }
 
+    /**
+     * Checks if the source already exists.
+     *
+     * @param string $url
+     *
+     * @return NewsServer\Common\Collections\NewsSource or false
+     */
     protected function alreadyExists($url)
     {
         return NewsSource::findFirst([

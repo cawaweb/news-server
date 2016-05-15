@@ -13,6 +13,13 @@ class TaskHandler
         $this->task = new ServerTask();
     }
 
+    /**
+     * Starts the task.
+     *
+     * @param string $name
+     * @param string $taskId
+     *
+     */
     public function start($name, $taskId = null)
     {
         if (!$this->isRunning()) {
@@ -30,6 +37,10 @@ class TaskHandler
         }
     }
 
+    /**
+     * Stops the task.
+     *
+     */
     public function stop()
     {
         if ($this->isRunning()) {
@@ -47,6 +58,12 @@ class TaskHandler
         }
     }
 
+    /**
+     * Terminates the task.
+     *
+     * @param string $errorMessage
+     *
+     */
     public function terminate($errorMessage)
     {
         if ($this->isRunning()) {
@@ -60,6 +77,12 @@ class TaskHandler
         }
     }
 
+    /**
+     * Notifies an error.
+     *
+     * @param string $errorMessage
+     *
+     */
     public function notifyError($errorMessage = null)
     {
         if ($this->isRunning()) {
@@ -70,6 +93,12 @@ class TaskHandler
         }
     }
 
+    /**
+     * Adds output to the task.
+     *
+     * @param string $message
+     *
+     */
     public function addOutPut($message)
     {
         if ($this->isRunning()) {
@@ -80,6 +109,12 @@ class TaskHandler
         }
     }
 
+    /**
+     * Notifies progress.
+     *
+     * @param float $progress
+     *
+     */
     public function notifyProgress($progress)
     {
         if (!$this->isCompleted()) {
@@ -90,22 +125,42 @@ class TaskHandler
         $this->task->save();
     }
 
+    /**
+     * Checks if the task is running.
+     *
+     * @return boolean
+     *
+     */
     protected function isRunning()
     {
         return $this->task->getStatus() == ServerTask::RUNNING;
     }
 
+    /**
+     * Checks if the task is completed.
+     *
+     * @return boolean
+     *
+     */
     protected function isCompleted()
     {
         return $this->task->getProgress() >= 100;
     }
 
+    /**
+     * Calculates the time spent.
+     *
+     */
     protected function calculateTimeSpent()
     {
         $totalTime = $this->task->getEndTime() - $this->task->getStartTime();
         $this->task->setTimeSpent($totalTime);
     }
 
+    /**
+     * Throws an exception.
+     *
+     */
     protected function throwException()
     {
         if ($this->isRunning()) {

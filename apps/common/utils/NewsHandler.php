@@ -21,6 +21,13 @@ class NewsHandler
         $this->html = new Dom();
     }
 
+    /**
+     * Discovers feed from an url.
+     *
+     * @param string $url
+     *
+     * @return array
+     */
     public function discover($url)
     {
         try {
@@ -39,7 +46,14 @@ class NewsHandler
         }
     }
 
-    public function fetch($source)
+    /**
+     * Fetches the fee's items.
+     *
+     * @param NewsServer\Common\Collections\NewsSource $source
+     *
+     * @return array $sourceItems
+     */
+    public function fetch(NewsSource $source)
     {
         try {
             $resource = $this->rss->download($source->getFeedUrl(), $source->getLastModified(), $source->getEtag());
@@ -91,7 +105,14 @@ class NewsHandler
         }
     }
 
-    public function review($item)
+    /**
+     * Review specific item.
+     *
+     * @param NewsServer\Common\Collections\NewsItem $item
+     *
+     * @return NewsServer\Common\Collections\NewsItem $updatedItem
+     */
+    public function review(NewsItem $item)
     {
         $updatedItems = [];
         $content = utf8_encode($item->getContent());
@@ -135,7 +156,14 @@ class NewsHandler
         return $updatedItem;
     }
 
-    protected function getStrings($item)
+    /**
+     * Obtains the strings to be replaced.
+     *
+     * @param NewsServer\Common\Collections\NewsItem $item
+     *
+     * @return array $strings
+     */
+    protected function getStrings(NewsItem $item)
     {
         $strings = [];
         $sourceId = (string) $item->getSourceId();

@@ -22,7 +22,7 @@ class MainTask extends \Phalcon\CLI\Task
 
         if ($sources) {
             $allItems = [];
-            //TODO improove progress calculation
+            //TODO improve progress calculation
             $progress = 90 / count($sources);
 
             foreach ($sources as $source) {
