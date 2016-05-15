@@ -1,0 +1,7 @@
+{
+    "require": {
+        "vlucas/phpdotenv": "^2.2",
+        "fguillot/picofeed": "@stable",
+        "paquettg/php-html-parser": "^1.6.8"
+    }
+}

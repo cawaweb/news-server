@@ -1,0 +1,14 @@
+.env
+!/apps/frontend/cache
+/apps/frontend/cache/*
+!/apps/frontend/cache/.gitkeep
+!/public/files
+/public/files/*
+!/public/files/.gitkeep
+!/public/img
+/public/img/*
+!/public/img/.gitkeep
+!/public/temp
+/public/temp/*
+!/public/temp/.gitkeep
+/vendor/
